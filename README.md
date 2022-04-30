@@ -15,3 +15,7 @@ Durante meus anos trabalhando na área de T.I., tive por muitas vezes a necessid
 
 ## O que espero?
 Que eu tenha o conhecimento necessário para implementar automações e integrações com as minhas ferramentas de trabalho e que possa ter autonomia para criar.
+
+## Considerações
+- Sei que coloco muitos comentários nos meus códigos e que isso não é uma boa prática, mas é a forma que achei de me achar no que cada parte/função/etc, o que ele faz, o que é, ... me ajuda nos estudos.
+- Nos vídeos das aulas, os professores tem costume de criar arquivos separados para cada aula. Eu coloco tudo no mesmo pois acho mais fácil de aprender, como se estivesse lendo um livro, o capítulo de Objetos (arquivo object.js) tem isso, o capítulo array (arquivo array.js) tem isso...
