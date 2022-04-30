@@ -59,10 +59,8 @@ $ git branch -M “main”
 
 Como a ideia é ter seu repositório pronto para ser baixado e trabalhado em qualquer lugar, o Github se torna a melhor opção. Com isso, crie um repositório na plataforma. Com o repositório criado, é gerado uma URL de acesso ao repositório, ele segue um padrão, sendo:
 
-<aside>
-📖 https://github.com/seuUserName/nomeDoRepositorio.git
+> 📖 https://github.com/seuUserName/nomeDoRepositorio.git
 
-</aside>
 
 Com isso, usamos esse repositório para trabalhar, no seu terminal, vincule esse repositório remoto ao diretório de trabalho da sua máquina:
 
@@ -155,7 +153,7 @@ Esse *pull* é feito na interface do GiHub, bem intuitivo.
 
 Agradecimentos/Referências
 
-Rafaella Ballerini
+## Rafaella Ballerini
 
 [https://www.youtube.com/watch?v=DqTITcMq68k](https://www.youtube.com/watch?v=DqTITcMq68k)
 
