@@ -151,9 +151,9 @@ Quando você clona o repositório de alguém e faz uma melhoria e gostria que a 
 
 Esse *pull* é feito na interface do GiHub, bem intuitivo.
 
-Agradecimentos/Referências
+## Agradecimentos/Referências
 
-## Rafaella Ballerini
+### Rafaella Ballerini
 
 [https://www.youtube.com/watch?v=DqTITcMq68k](https://www.youtube.com/watch?v=DqTITcMq68k)
 
