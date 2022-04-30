@@ -151,6 +151,9 @@ Quando você clona o repositório de alguém e faz uma melhoria e gostria que a 
 
 Esse *pull* é feito na interface do GiHub, bem intuitivo.
 
+
+## Considerações
+Após alguns erros de difigitação nos arquivos READMEs, eu consegui entender bem como usar o Git, por enquanto eu usei de forma simples, só subindo ou atualizando os arquivos de README que ando criando, mas conforme for criando meus códigos, entendo que irei ter mais conhecimento sobre a ferramenta.
 ## Agradecimentos/Referências
 
 ### Rafaella Ballerini
