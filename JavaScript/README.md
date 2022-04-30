@@ -60,12 +60,13 @@ Printando todos os camponentes do objeto
 ```
 Saída:
 ```bash
-    $ D&D 5e
-    $ 2014
-    $ 10
+    $   D&D 5e
+        2014
+        10
 ```
 
-Adicionando e alterando valores
+#### Adicionando e alterando valores
+
 A adição de um novo valor é direta e bem simples
 ```javascript
     sistesmaDeRpgs.numeroDeLivros = 50
@@ -73,13 +74,13 @@ A adição de um novo valor é direta e bem simples
 ```
 Saída:
 ```bash
-    {
-      nome: 'D&D 5e',
-      anoDePublicacao: 2014,
-      notaPessoal: 10,
-      livros: [ "Player's Handbook", "Dungeon Master's Guide", 'Monster Manual' ],
-      numeroDeLivros: 50
-    }
+    $   {
+          nome: 'D&D 5e',
+          anoDePublicacao: 2014,
+          notaPessoal: 10,
+          livros: [ "Player's Handbook", "Dungeon Master's Guide", 'Monster Manual' ],
+          numeroDeLivros: 50
+        }
 ```
 
 A alteração também é direta e simples
@@ -89,13 +90,13 @@ A alteração também é direta e simples
 ```
 Saída:
 ```bash
-    {
-      nome: 'D&D 5e',
-      anoDePublicacao: 2014,
-      notaPessoal: 10,
-      livros: [ "Player's Handbook", "Dungeon Master's Guide", 'Monster Manual' ],
-      numeroDeLivros: 53
-    }
+    $   {
+          nome: 'D&D 5e',
+          anoDePublicacao: 2014,
+          notaPessoal: 10,
+          livros: [ "Player's Handbook", "Dungeon Master's Guide", 'Monster Manual' ],
+          numeroDeLivros: 53
+        }
 ```
 
 É possivel que os tipos de valores das chaves seja, também, um array, para acessar a informação dessa array
@@ -104,9 +105,9 @@ Saída:
 ```
 Saída:
 ```bash
-    $ Player's Handbook
-    $ Dungeon Master's Guide
-    $ Monster Manual
+    $   Player's Handbook
+        Dungeon Master's Guide
+        Monster Manual
 ```
 
 #### Compondo objetos com objetos
