@@ -26,12 +26,16 @@ Objetos no JS me parecem ser iguais a *arrays*, a diferença é que o objeto tem
 ```
 Para acessar esses dados, nós referenciamos o nome da chave do valor que queremos.
 ```javascript
-    console.log(`Um dos meus sistemas de RPG preferidos é o ${sistemaDeRpgs.nome} que foi lançado em ${sistemaDeRpgs.2014}`)
+    console.log(`Um dos meus sistemas de RPG preferidos é o ${sistemaDeRpgs.nome} que foi lançado em ${sistemaDeRpgs.anoDepublicacao}`)
 ```
 Saída:
 ```bash
     $ Um dos meus sistemas de RPG preferidos é o D&D 5e que foi lançado em 2014.
 ```
+
+
+
+
 ## Agradecimentos/Referências
 ### Alura
 #### Instrutores JS Objetos
