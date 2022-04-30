@@ -3,9 +3,9 @@
 ## Roadmap
 Esse repositório irá conter as anotações de tudo que ando estudando, principalmente programação, abaixo segue um conjunto de tecnologias que, inicialmente, quero aprender, mas entendo que essa lista pode aumentar.
 
-- Git/Github
-- Docker
-- JavaScript
+- [Git/Github](https://github.com/Skimifil/Estudos/tree/main/Git)
+- [Docker](https://github.com/Skimifil/Estudos/tree/main/Docker)
+- [JavaScript](https://github.com/Skimifil/Estudos/tree/main/JavaScript)
 - MongoDB
 - Elastic Search
 - AWS
