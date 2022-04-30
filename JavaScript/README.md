@@ -160,6 +160,130 @@ Saída:
         ]
 ```
 
+Gerando uma visualização mais "bonita" percorrendo as chaves e valores do objeto utilizando o FOR. O typeof indica qual o tipo do dado.
+
+```javascript
+let relatorio = ``
+for( let info in sistesmaDeRpgs){
+    if(typeof sistesmaDeRpgs[info] === "object" || typeof sistesmaDeRpgs[info] === "function"){
+        continue
+    }else{
+        relatorio += `${info} ==> ${sistesmaDeRpgs[info]} \n\n`
+    }
+}
+console.log(relatorio)
+```
+Saída:
+```bash
+    $   nome ==> D&D 5e 
+        
+        anoDePublicacao ==> 2014 
+        
+        notaPessoal ==> 10 
+        
+        numeroDeLivros ==> 53
+```
+### Métodos de objetos
+Através da função "Object", conseguimos trazer informações sobre o objeto que estamos trabalhando.
+
+```javascript
+    const propsSistemas = Object.keys(sistesmaDeRpgs)
+    console.log(propsSistemas)
+```
+Saída:
+```bash
+    $   [
+          'nome',
+          'anoDePublicacao',
+          'notaPessoal',
+          'livros',
+          'numeroDeLivros',
+          'ramificacoes'
+        ]
+```
+
+Utilizando o método "include", nós validamos se um determinado valor consta em um objeto.
+
+```javascript
+function validaRamificacao(obj){
+    const propsSisRam = Object.keys(obj)
+    if(propsSisRam.includes(`ramificacoes`)){
+        console.log(`O livro ${obj.nome} tem ramificações dele!`)
+    }
+}
+validaRamificacao(sistesmaDeRpgs)
+```
+Saída:
+```bash
+O livro D&D 5e tem ramificações dele!
+```
+
+#### Sintaxe de espalhamento
+Pegar uma lista de ramificações e criar uma lista própria dela. *Confesso que não entendi bem, preciso de uma revisão.*
+
+*Acho que vale arrumar todo o código para que a lógica abaixo funcione no código de cima...???*
+
+```javascript
+const outroSistesmaDeRpgs = [
+    {
+    nome: 'Livro Teste 1',
+    anoDePublicacao: 2022,
+    notaPessoal: 5,
+    livros: [`Livro 1-1`, `Livro 1-2`],
+    ramificacoes: [{
+        nome: `Livro 1.1`,
+        anoDePublicacao: 2022,
+        Motivo: `Blá blá bla'bonito.`
+    }]
+    },
+    {
+        nome: 'Livro Teste 2',
+        anoDePublicacao: 2022,
+        notaPessoal: 5,
+        livros: [`Livro 2-1`, `Livro 2-2`],
+        ramificacoes: [{
+            nome: `Livro 2.1`,
+            anoDePublicacao: 2022,
+            Motivo: `Blá blá bla'bonito.`
+        },{
+            nome: `Livro 2.2`,
+            anoDePublicacao: 2022,
+            Motivo: `Oto Blá blá bla'bonito.`
+        }]
+        }
+]
+
+console.log(outroSistesmaDeRpgs)
+
+const listaDeRamificacoes = [...outroSistesmaDeRpgs[0].ramificacoes,...outroSistesmaDeRpgs[1].ramificacoes]
+console.table(listaDeRamificacoes)
+```
+Saída:
+```bash
+    $    [
+          {
+            nome: 'Livro Teste 1',
+            anoDePublicacao: 2022,
+            notaPessoal: 5,
+            livros: [ 'Livro 1-1', 'Livro 1-2' ],
+            ramificacoes: [ [Object] ]
+          },
+          {
+            nome: 'Livro Teste 2',
+            anoDePublicacao: 2022,
+            notaPessoal: 5,
+            livros: [ 'Livro 2-1', 'Livro 2-2' ],
+            ramificacoes: [ [Object], [Object] ]
+          }
+        ]
+        ┌─────────┬─────────────┬─────────────────┬───────────────────────────┐
+        │ (index) │    nome     │ anoDePublicacao │          Motivo           │
+        ├─────────┼─────────────┼─────────────────┼───────────────────────────┤
+        │    0    │ 'Livro 1.1' │      2022       │   "Blá blá bla'bonito."   │
+        │    1    │ 'Livro 2.1' │      2022       │   "Blá blá bla'bonito."   │
+        │    2    │ 'Livro 2.2' │      2022       │ "Oto Blá blá bla'bonito." │
+        └─────────┴─────────────┴─────────────────┴───────────────────────────┘
+```
 
 ## Agradecimentos/Referências
 ### Alura
