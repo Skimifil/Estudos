@@ -1,8 +1,8 @@
 const sistesmaDeRpgs = {
-    nome: "D&D 5e",
+    nome: 'D&D 5e',
     anoDePublicacao: 2014,
     notaPessoal: 10,
-    livros: ["Player's Handbook", "Dungeon Master's Guide", "Monster Manual"]
+    livros: [`Player's Handbook`, `Dungeon Master's Guide`, `Monster Manual`]
 }
 
 console.log(`Um dos meus sistemas de RPG preferidos é o ${sistesmaDeRpgs.nome} que foi lançado em ${sistesmaDeRpgs.anoDePublicacao}.`)
@@ -11,7 +11,7 @@ console.log(`Um dos meus sistemas de RPG preferidos é o ${sistesmaDeRpgs.nome} 
 console.log(sistesmaDeRpgs.nome.substring(0,3))
 
 // Também é possivel validar as chaves que contém no objeto, utilizando uma variável de arrays
-const arrayDeChaves = ["nome", "anoDePublicacao", "notaPessoal"]
+const arrayDeChaves = [`nome`, `anoDePublicacao`, `notaPessoal`]
 console.log(sistesmaDeRpgs[arrayDeChaves[0]])
 
 //----------------------------------------------------
@@ -35,12 +35,21 @@ sistesmaDeRpgs.livros.forEach(nomeDosLivros => console.log(nomeDosLivros))
 //----------------------------------------------------
 // Compondo objetos com objetos
 // Conforme visto acima, conseguimos adicionar vários tipos de valores e mesmo fora da estrutura inicial. Com isso podemos colocar um objeto dentro de um objeto.
-sistesmaDeRpgs.ramificacoes = {
-    nome: "Pathfinder",
+sistesmaDeRpgs.ramificacoes = [{
+    nome: `Pathfinder`,
     anoDePublicacao: 2018,
-    Motivo: "Depois do descontentamento dos fâs de D&D na 4º edição, foi criado o sistema Pathfinder."
-}
+    Motivo: `Depois do descontentamento dos fâs de D&D na 4º edição, foi criado o sistema Pathfinder.`
+}]
 console.log(sistesmaDeRpgs)
 
 // Agora, para acessar uma chave de um objeto DENTRO de outro objeto.
-console.log(sistesmaDeRpgs.ramificacoes.nome)
+console.log(sistesmaDeRpgs.ramificacoes[0].nome)
+
+// Quando queremos adicionar um novo dado a array, podemos utilizar o "push" e no objeto segue a mesma ideia (quando temos um array dentro do objeto)
+
+sistesmaDeRpgs.livros.push(`Guia do Aventureiro para a Costa da Espada`)
+console.log(sistesmaDeRpgs.livros)
+
+
+
+console.log(`-----------------------------------------`)
