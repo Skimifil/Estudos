@@ -90,7 +90,7 @@ Agora segue com o *commit* das alterações.
 $ git commit -m “Criação do projeto”
 ```
 
-E envia o commit para o GitHub
+E envia o commit para o GitHub.
 
 ```bash
 $ git push origin main
@@ -153,7 +153,7 @@ Esse *pull* é feito na interface do GiHub, bem intuitivo.
 
 
 ## Considerações
-Após alguns erros de difigitação nos arquivos *README*s, eu consegui entender bem como usar o Git, por enquanto eu usei de forma simples, só subindo ou atualizando os arquivos de "README" que ando criando, mas conforme for criando meus códigos, entendo que irei ter mais conhecimento sobre a ferramenta.
+Após alguns erros de digitação nos arquivos *README*s, eu consegui entender bem como usar o Git, por enquanto eu usei de forma simples, só subindo ou atualizando os arquivos de "README" que ando criando, mas conforme for criando meus códigos, entendo que irei ter mais conhecimento sobre a ferramenta.
 ## Agradecimentos/Referências
 
 ### Rafaella Ballerini

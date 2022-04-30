@@ -1,12 +1,14 @@
 # JavaScript
 
+#### Observação
+Existe alguns conceitos que não estão nesse README, mas tenho ciência disso e irei colocar com o tempo.
 ## Por que aprender?
 
 A ideia agora é me profissionalizar em programação, irei utilizar o JavaScript como a linguagem que irei dar o maior foco. Antes eu ja tinha tentado Python, mas não segui em frente, mas quero utilizar o JavaScript como minha *linguagem principal*.
 
 ## O que espero aprender?
 
-Espero ter total conhecimento em como utilizar a linguagem para ter capacidade de *criar* integraçãoes e automações para as ferramentas e atividades do meu dia de trabalho.
+Espero ter total conhecimento em como utilizar a linguagem para ter capacidade de *criar* integrações e automações para as ferramentas e atividades do meu dia de trabalho.
 
 # JavaScript
 
@@ -44,7 +46,7 @@ Saída:
     $ D&D
 ```
 
-Também é possivel validar as chaves que contém no objeto, utilizando uma variável de arrays
+Também é possível validar as chaves que contém no objeto, utilizando uma variável de arrays.
 ```javascript
     const arrayDeChaves = [`nome`, `anoDePublicacao`, `notaPessoal`]
     console.log(sistesmaDeRpgs[arrayDeChaves[0]])
@@ -54,7 +56,7 @@ Saída:
     $ D&D 5e
 ```
 
-Printando todos os camponentes do objeto
+Printando todos os componentes do objeto.
 ```javascript
     arrayDeChaves.forEach(info=>console.log(sistesmaDeRpgs[info]))
 ```
@@ -67,7 +69,7 @@ Saída:
 
 #### Adicionando e alterando valores
 
-A adição de um novo valor é direta e bem simples
+A adição de um novo valor é direta e bem simples.
 ```javascript
     sistesmaDeRpgs.numeroDeLivros = 50
     console.log(sistesmaDeRpgs)
@@ -83,7 +85,7 @@ Saída:
         }
 ```
 
-A alteração também é direta e simples
+A alteração também é direta e simples.
 ```javascript
     sistesmaDeRpgs.numeroDeLivros = 53
     console.log(sistesmaDeRpgs)
@@ -99,7 +101,7 @@ Saída:
         }
 ```
 
-É possivel que os tipos de valores das chaves seja, também, um array, para acessar a informação dessa array
+É possivel que os tipos de valores das chaves seja, também, um array, para acessar a informação dessa array.
 ```javascript
     sistesmaDeRpgs.livros.forEach(nomeDosLivros => console.log(nomeDosLivros))
 ```
@@ -146,7 +148,7 @@ Saída:
     $ Pathfinder
 ```
 
-Quando queremos adicionar um novo dado a array, podemos utilizar o "push" e no objeto segue a mesma ideia (quando temos um array dentro do objeto)
+Quando queremos adicionar um novo dado a array, podemos utilizar o "push" e no objeto segue a mesma ideia (quando temos um array dentro do objeto).
 ```javascript
     sistesmaDeRpgs.livros.push(`Guia do Aventureiro para a Costa da Espada`)
 ```
@@ -285,6 +287,78 @@ Saída:
         └─────────┴─────────────┴─────────────────┴───────────────────────────┘
 ```
 
+## Orientação a Objeto
+"É um modelo de se programar que você pega situações do mundo real e traz pro seu código".
+Me parece uma forma mais inteligente de programar, com sistema de classes que você faz um template do que se quer usar e depois você só instancia ela para alguém, além das Heranças que tem.
+
+Por convenção, o nome das classes SEMPRE devem começar com a primeira letra maiúscula.
+
+Estruturando sua classe:
+```javascript
+
+class SistemasDeRpg {
+    constructor(nome,anoDePublicacao,notaPessoal,livros){
+        this.nome = nome
+        this.anoDePublicacao = anoDePublicacao
+        this.notaPessoal = notaPessoal
+        this.livros = livros
+    }
+
+    aumentaANota(valor){
+        this.notaPessoal += valor
+    }
+
+    exibeOsLivros(){
+        console.table(this.livros)
+    }
+}
+
+const livroDnD = new SistemasDeRpg('D&D 5e', 2014, 10, [`Player's Handbook`, `Dungeon Master's Guide`, `Monster Manual`])
+console.log(livroDnD)
+livroDnD.exibeOsLivros()
+```
+Saída:
+```javascript
+    $    SistemasDeRpg {
+          nome: 'D&D 5e',
+          anoDePublicacao: 2014,
+          notaPessoal: 10,
+          livros: [ "Player's Handbook", "Dungeon Master's Guide", 'Monster Manual' ]
+        }
+        ┌─────────┬──────────────────────────┐
+        │ (index) │          Values          │
+        ├─────────┼──────────────────────────┤
+        │    0    │   "Player's Handbook"    │
+        │    1    │ "Dungeon Master's Guide" │
+        │    2    │     'Monster Manual'     │
+        └─────────┴──────────────────────────┘
+```
+
+Agora nós conseguimos criar as Heranças.
+```javascript
+class Ramificacao extends SistemasDeRpg{
+    constructor(nome,anoDePublicacao,notaPessoal,livros,motivo){
+        super(nome,anoDePublicacao,notaPessoal,livros)
+        this.motivo = motivo
+    }
+}
+
+const livroPath = new Ramificacao(`Pathfinder`, 2018, 10, `Pathfinder`, `Depois do descontentamento dos fâs de D&D na 4º edição, foi criado o sistema Pathfinder.`)
+
+console.log(livroPath)
+```
+Saída:
+```bash
+    $    Ramificacao {
+          nome: 'Pathfinder',
+          anoDePublicacao: 2018,
+          notaPessoal: 10,
+          livros: 'Pathfinder',
+          motivo: 'Depois do descontentamento dos fâs de D&D na 4º edição, foi criado o sistema Pathfinder.'
+        }
+```
+
+___
 ## Agradecimentos/Referências
 ### Alura
 #### Instrutores JS Objetos
