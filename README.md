@@ -19,4 +19,4 @@ Que eu tenha o conhecimento necessário para implementar automações e integra�
 ## Considerações
 - Sei que coloco muitos comentários nos meus códigos e que isso não é uma boa prática, mas é a forma que achei de me achar no que cada parte/função/etc, o que ele faz, o que é, ... me ajuda nos estudos.
 - Nos vídeos das aulas, os professores tem costume de criar arquivos separados para cada aula. Eu coloco tudo no mesmo pois acho mais fácil de aprender, como se estivesse lendo um livro, o capítulo de Objetos (arquivo object.js) tem isso, o capítulo array (arquivo array.js) tem isso...
--  - Acredito que escrever tudo em inglês traria mais visibilidade, mas como meu inglês não é bom e eu estou aprendendo quase que do zero, decidi colocar em português mesmo, assim fica mais fácil o entendimento e a revisão depois.
+- Acredito que escrever tudo em inglês traria mais visibilidade, mas como meu inglês não é bom e eu estou aprendendo quase que do zero, decidi colocar em português mesmo, assim fica mais fácil o entendimento e a revisão depois.
