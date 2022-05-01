@@ -108,3 +108,92 @@ Saída:
     7224910c35d6   ubuntu    "bash"    About a minute ago   Exited (0) 58 seconds ago             wonderful_zhukovsky
 ```
 Repare que na coluna de comando, a execução foi "bash", e após executado isso, o container *"morreu"*.
+
+## Comandos básicos
+
+Alguns comandos básicos de administração os containers são:
+Quando vamos mexer em algum container, nós podemos utilizar o ID do container ou até mesmo o nome dele, mas o mais recomendado é o ID.
+
+Rodar um container. Quando rodamos um container, ele trava nosso terminal, para que isso não ocorra, podemos utilizar o parâmetro "-d".
+```bash
+    $ docker run nomeDaImagem
+    $ docker run -d nomeDaImagem
+```
+Iniciar um container.
+```bash
+    $ docker start iDDoContainer
+```
+Parando um container. Quando paramos um container, por padrão, é esperado uns 10 segundos para que o container pare, caso queira que aja uma parada imediata, use o parâmetro "-t".
+```bash
+    $ docker stop iDDoContainer
+    $ docker stop -t=0 iDDoContainer
+```
+Removendo um container (lembrando que para deletar um container, ele precisa estar parado). Quando fazemos a remoção de um container, temos que ter em mente que tudo que esta dentro daquele container também se perderá. logo é preciso ter um sistema de persistência de arquivos.
+```bash
+    $ docker container rm iDDoContainer
+```
+Para entrar no container e poder utiliza-lo.
+```bash
+    $ docker exec -it iDDoContainer bash
+```
+Temos a opção de pausar um container, é importante entender que quando paramos um container, nós "matamos" todos os processo dentro dele, nisso quando der o *start*, seus processos sobem do zero. Agora quando pausamos o container, ele pausa todas as execuções e quando damos o "despause", volta da onde parou.
+```bash
+    $ docker pause iDDoContainer
+    $ docker unpause iDDoContainer
+```
+
+## Portas
+Devido ao sistema NET do Namespace, conseguimos fazer o isolamento e mapeamento de portas, com isso nós podemos passar na criação de um container de uma aplicação Web por exemplo, a porta que vai se comunicar o container e mapear a porta da nossa máquina que vai até esse container.
+```bash
+    $ docker run -d -P nginx
+```
+Com o "P" maiusculo, o próprio Docker cria um mapeamento de portas para aquele container.
+
+Para visualizar esse mapeamento de portas, use:
+```bash
+    $ docker port idDoContainer
+```
+Você terá uma saída parecida como essa:
+```bash
+    $ 80/tcp -> 0.0.0.0:49153
+    80/tcp -> :::49153
+```
+Agora, basta ir no seu navegador e colocar "http://localhost:49153/" e você terá a tela de bem-vindo do NGINX.
+
+Uma outra forma de subir o container é com você mapeando as portas, com isso você usa o parametro de "-p" passando a porta da sua máquina ":" a porta do container.
+```bash
+    $ docker run -d -p 8080:80 nginx
+```
+E dando o comando do "docker port idDoContainer", você terá o mapemaneto que você fez:
+```bash
+    $ 80/tcp -> 0.0.0.0:8080
+    80/tcp -> :::8080
+```
+E se acessar pelo navegador, terá a mesma tela de bem-vindo do NGINX.
+
+## Imagens
+
+Como dito antes, para que o container possa ser executado, ele precisa de uma imagem, essa imagem é validada se existe na sua máquina e caso não, ele faz o download do repositório do Docker Hub. Agora vamos ver uns comandos de imagens.
+
+Para fazer o download da imagem.
+```bash
+    $ docker pull nomeDaImagem
+```
+Para inspecionar a imagem.
+```bash
+    $ docker inspect idDaImagem
+```
+Analisar as *layers* da imagem. As *layers* são os comandos, parametros, configurações daquela imagem, quando fizemos o run do NGINX lá no começo do documento, vimos o Docker fazer o download dessas *layers*.
+```bash
+    1fe172e4850f: Pull complete 
+    35c195f487df: Pull complete 
+    213b9b16f495: Pull complete 
+    a8172d9e19b9: Pull complete 
+    f5eee2cb2150: Pull complete 
+    93e404ba8667: Pull complete 
+```
+O que o Docker faz é analisar se na sua máquina tem alguma layer dessa e se não, ele daz o download, mas caso você ja tenha, ele reutiliza.
+```bash
+    $ docker history idDaImagem
+```
+As imagens são RO (Read Only), quando executamos um container com aquela imagem, o que o Docker faz é criar uma *layer* RW (Read/Write) temporária acima daquela imagem e com isso nós conseguimos fazer alterações dentro daquele container.
