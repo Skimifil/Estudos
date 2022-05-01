@@ -197,3 +197,40 @@ O que o Docker faz é analisar se na sua máquina tem alguma layer dessa e se n�
     $ docker history idDaImagem
 ```
 As imagens são RO (Read Only), quando executamos um container com aquela imagem, o que o Docker faz é criar uma *layer* RW (Read/Write) temporária acima daquela imagem e com isso nós conseguimos fazer alterações dentro daquele container.
+
+## Dockerfile
+[Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+
+Um Dockerfile é um arquivo de instruções que contém tudo que precisa para o Docker criar uma imagem e assim você poder utilizar na hora de rodar sua aplicação.
+
+Um exemplo é na hora de subir uma aplicação em node, onde:
+
+    Passamos uma imagem padrão de ja existe do NODE para rodas e colocamos também a versão  que queremos utilizar:
+    - FROM node:14
+    
+    Passamos o diretório padrão ao iniciar o container:
+    - WORKDIR /app=node
+    
+    Passamos que ele vai copiar os arquivos da nossa aplicação para dentro da imagem, então passamos o "." (ponto) que é o diretório atual da nossa máquina e passamos o diretório do container, que nesse caso como passamos o "WORKDIR", ele passa ser o diretório atual que o container está:
+    - COPY . .
+    
+    Agora pedimos para ele executar o comando de instalação do npm:
+    - RUN npm install
+    
+    Passamos o ponto de entrada ao executar a imagem:
+    - ENTRYPOINT npm start
+    
+Com isso teremos o seguinte arquivo nomeado como "Dockerfile".
+
+```bash
+    FROM node:14
+    WORKDIR /app=node
+    COPY . .
+    RUN npm install
+    ENTRYPOINT npm start
+```
+Agora podemos fazer o "build" dessa imagem, passando seu usuário no Docker Hub, nome da imagem e o "." para indicar o caminho do arquivo "Dockerfile".
+```bash
+    $ docker build -t seuUsuário/app-node:1.0 .
+```
+Com isso feito, uma imagem será criada na sua máquina e você será capaz de utiliza-la conforme os comando que vimos antes.
