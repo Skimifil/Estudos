@@ -234,3 +234,83 @@ Agora podemos fazer o "build" dessa imagem, passando seu usuário no Docker Hub,
     $ docker build -t seuUsuário/app-node:1.0 .
 ```
 Com isso feito, uma imagem será criada na sua máquina e você será capaz de utiliza-la conforme os comando que vimos antes.
+
+Consehuimos passar argumentos para dentro da imagem em momento de build.
+- ARG PORT=6000
+
+E passar variáveis para dentro da imagem.
+- ENV PORT=$PORT
+
+E assim expor essas portas.
+- EXPOSE $PORT
+
+## Docker Hub
+[Docker Hub](https://hub.docker.com/) é o repositório oficial do Docker e nele contém uma variedade muito grande de imagens que podem ser baixadas e utilizadas. Caso você queira subir suas imagens no repositório, basta seguir os passos abaixo.
+
+Inicie criando sua conta no site., depois faça o login no Docker da sua máquina pelo terminal.
+```bash
+    $ docker login -u seuUsuário
+```
+Agora, você consegue subir sua imagem para o repositório.
+```bash
+    $ docker push nomeDaImagem
+```
+Lembre de sempre utilizar TAGs nas imagens.
+
+## Persistencia de dado
+Como visto anteriormente, ao remover um container, os dados que foram utilizados dentro dele, são removidos juntos e quando criamos um novo container, não conseguimos utilizar aquele dado gerado antes.
+
+Para fazermos com que esses dados possuam uma persistência, iremos utilizar os "*bind mounts*". Usando o parâmetro de "-v" indicamos qual o diretório que queremos que os dados sejam mantidos e com o dois pontos ":", informamos qual diretório será criado dentro do container e nisso, podemos usar aquele diretório em qualquer outro container.
+```bash
+    $ docker run -it -v /home/show/volume-Docker:/app ubuntu bash
+```
+
+Uma forma mais semântica de criar esse volume é com a utilização do "--mount". Passamos nele o tipo de *mount* que será feito, tem o "bind" que ele fecha um link entre os diretórios e o tipo "tmpfs" que faz o link do diretório no container com a memória da sua máquina, fazendo com que quando o container morre, aqueles dados também sejam deletados.
+```bash
+    $ docker run -it --mount type=bind,source=/home/show/volume-docker,target=/app ubuntu bash
+```
+
+Uma das recomendações é utilizar o "volume" do Docker, pois ele é um sistema que é administrado pelo próprio Docker. Conseguimos visualizar os *volume*s criados com o comando:
+```bash
+    $ docker volume ls
+```
+Nós podemos criar os *volume"s utilizando o comando de "create".
+```bash
+    $ docker volume create nomeDoVolume
+```
+E com isso utilizar ele nos nossos containers.
+```bash
+    $ docker run -it -v nomeDoVolume:/app ubuntu bash
+    $ docker run -it --mount source=nomeDoVolume,target=/app ubuntu bash
+```
+Quando fazemos isso, o Docker passa a gerenciar todo o sistema de volumes que criamos e na nossa máquina, os dados que são criados no container passam a ser armazenados na sua máquina no diretório "/var/lib/docker/volumes"
+
+## Rede
+O Docker, utilizando o Namespace, como ja visto na parte de portas, ele cria todo um sistema de rede interna dele, colocando os containers em redes. Para validar isso de um container, basta utilizar o parâmetro "inspect" e você terá uma visão da parte de "Network".
+```bash
+    $ docker container inspect idDoVolume
+```
+O docker possui três tipos de redes e é possivel visualizar pelo comando:
+```bash
+    $ docker network ls
+```
+Você terá uma saída como:
+```bash
+    $ NETWORK ID     NAME      DRIVER    SCOPE
+    f7ae9cde3c25   bridge    bridge    local
+    5ab6b9ab032e   host      host      local
+    77ac5d167545   none      null      local
+```
+Para criar uma rede , utilizamos o comando:
+```bash
+    $ docker network create --driver bridge minhaNetwork
+```
+E subimos nosso container com essa rede.
+```bash
+    $ docker run -it --name ubuntu1 --network minhaNetwork ubuntu bash
+```
+Quando subimos um container utilizando um nome pra ele e colocamos ele dentro de uma *network*, os containers dentro daquela *network* conseguem se comunicar por nome. Então um "ping" por exemplo, funciona entre as máquinas passando o nome delas como endereço de destino.
+
+Agora, quando falamos dos tipos "none" e "host".
+- O tipo "none" indica ao Docker que aquele container não terá uma interface de rede.
+- O tipo "host" utiliza as configurações de rede da sua máquina.
