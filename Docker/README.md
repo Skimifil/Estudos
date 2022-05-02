@@ -1,7 +1,8 @@
 # Docker
 
 #### Observação
---
+- Entendi bem o básico, agora vou dar uma avançada para o Docker Swarm.
+- Vi que a Alura possui cursos para a Docker DCA, não vou fazer a certificação agora, mas vou dar uma olhada nesses cursos para fixar bem o conhecimento.
 ## Por que aprender?
 
 A ideia agora é me profissionalizar em programação, irei utilizar o Docker para subir ambientes que suportem meus códigos e aprendizado, além de utilizar a ferramenta para otimizar coisas do meu trabalho.
@@ -143,6 +144,8 @@ Temos a opção de pausar um container, é importante entender que quando paramo
 ```
 
 ## Portas
+[Docker Networks](https://docs.docker.com/engine/reference/commandline/port/)
+
 Devido ao sistema NET do Namespace, conseguimos fazer o isolamento e mapeamento de portas, com isso nós podemos passar na criação de um container de uma aplicação Web por exemplo, a porta que vai se comunicar o container e mapear a porta da nossa máquina que vai até esse container.
 ```bash
     $ docker run -d -P nginx
@@ -172,6 +175,7 @@ E dando o comando do "docker port idDoContainer", você terá o mapemaneto que v
 E se acessar pelo navegador, terá a mesma tela de bem-vindo do NGINX.
 
 ## Imagens
+[Docker Images](https://docs.docker.com/engine/reference/commandline/images/)
 
 Como dito antes, para que o container possa ser executado, ele precisa de uma imagem, essa imagem é validada se existe na sua máquina e caso não, ele faz o download do repositório do Docker Hub. Agora vamos ver uns comandos de imagens.
 
@@ -257,7 +261,9 @@ Agora, você consegue subir sua imagem para o repositório.
 ```
 Lembre de sempre utilizar TAGs nas imagens.
 
-## Persistencia de dado
+## Persistência de dado
+[Docker Volumes](https://docs.docker.com/storage/volumes/)
+
 Como visto anteriormente, ao remover um container, os dados que foram utilizados dentro dele, são removidos juntos e quando criamos um novo container, não conseguimos utilizar aquele dado gerado antes.
 
 Para fazermos com que esses dados possuam uma persistência, iremos utilizar os "*bind mounts*". Usando o parâmetro de "-v" indicamos qual o diretório que queremos que os dados sejam mantidos e com o dois pontos ":", informamos qual diretório será criado dentro do container e nisso, podemos usar aquele diretório em qualquer outro container.
@@ -286,6 +292,8 @@ E com isso utilizar ele nos nossos containers.
 Quando fazemos isso, o Docker passa a gerenciar todo o sistema de volumes que criamos e na nossa máquina, os dados que são criados no container passam a ser armazenados na sua máquina no diretório "/var/lib/docker/volumes"
 
 ## Rede
+[Docker Networks](https://docs.docker.com/network/)
+
 O Docker, utilizando o Namespace, como ja visto na parte de portas, ele cria todo um sistema de rede interna dele, colocando os containers em redes. Para validar isso de um container, basta utilizar o parâmetro "inspect" e você terá uma visão da parte de "Network".
 ```bash
     $ docker container inspect idDoVolume
@@ -314,3 +322,47 @@ Quando subimos um container utilizando um nome pra ele e colocamos ele dentro de
 Agora, quando falamos dos tipos "none" e "host".
 - O tipo "none" indica ao Docker que aquele container não terá uma interface de rede.
 - O tipo "host" utiliza as configurações de rede da sua máquina.
+
+
+## Docker compose
+[Docker Compose](https://docs.docker.com/compose/compose-file/)
+
+É uma *feature* do Docker que nós ajuda a administrar e "coordenar uma série de containers. Quando precisamos de um ambiente que tenha dois ou mais containers e eles se comunicando entre si, ficar dando comandos manuais acaba sendo massante e nem um pouco produtivo, logo o Docker Compose nos ajuda nisso. O Compose utiliza u documento YMLs que contém toda a estrutura do nosso ambiente.
+```bash
+    version: "3.0"
+    services:
+      mongodb:
+        image: mongo:4.4.6
+        container_name: meu-mongo
+        networks:
+          - compose-bridge
+    
+      alurabooks:
+        image: aluradocker/alura-books:1.0
+        container_name: alurabooks
+        networks:
+          - compose-bridge
+        ports:
+          - 3000:3000
+    
+    networks:
+      compose-bridge:
+        driver: bridge
+```
+Com nosso arquivo .yml criado, podemos subir nossa aplicação. Lembre de estar na mesma pasta do seu arquivo para executar o comando.
+```bash
+    $ docker compose up -d
+```
+Podemos avaliar os *compose*s em execução com o comando o "ls".
+```bash
+$ docker compose ls
+```
+E se precisar parar, basta dar o "stop" ou o "down" (para e remove).
+```bash
+    $ docker compose down
+```
+
+## Agradecimentos/Referências
+### Alura
+##### Instrutores "Docker: criando e gerenciando containers"
+Daniel Artine

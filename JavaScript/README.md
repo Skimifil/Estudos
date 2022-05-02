@@ -361,5 +361,5 @@ Saída:
 ___
 ## Agradecimentos/Referências
 ### Alura
-#### Instrutores JS Objetos
+##### Instrutores "Fundamentos do JavaScript: objetos"
 André Bessa e Juliana Amoasei 

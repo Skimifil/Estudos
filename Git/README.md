@@ -156,7 +156,9 @@ Esse *pull* é feito na interface do GiHub, bem intuitivo.
 Após alguns erros de digitação nos arquivos *README*s, eu consegui entender bem como usar o Git, por enquanto eu usei de forma simples, só subindo ou atualizando os arquivos de "README" que ando criando, mas conforme for criando meus códigos, entendo que irei ter mais conhecimento sobre a ferramenta.
 ## Agradecimentos/Referências
 
-### Rafaella Ballerini
+### Youtube
+
+Rafaella Ballerini
 
 [https://www.youtube.com/watch?v=DqTITcMq68k](https://www.youtube.com/watch?v=DqTITcMq68k)
 
