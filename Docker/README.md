@@ -408,7 +408,7 @@ E nisso, quando for no seu *manager*, você vai conseguir ver que o "status" del
 
 Agora que temos nosso ambiente pronto para uso, precisamos subir nossos containers. Para isso, o Docker Swarm utilizaos "*services*". Antes quando precisavamos subir um container, usavamos o comando "docker run ...", mas esse comando é utilizado dentro de um escopo **local**. Para subirmos os containers dentro de um escopo **global**, utilizamos o comando "docker service create..." no nosso *manager*.
 ```bash
-    docker service create -p 8080:3000 nginx
+    docker service create -p 8080:80 nginx
 ```
 Com isso, é possivel validar as informações desse serviço.
 ```bash
