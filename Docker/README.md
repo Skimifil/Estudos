@@ -416,6 +416,21 @@ Com isso, é possivel validar as informações desse serviço.
     docker service ps idDoServico
 ```
 
+Nosso *manager* exerce uma importância dentro do no *Swarm* que sua disponibilidade não pode ser deixada de lado, pois caso ele saia do no *Swarm* por qualquer motivo, não teremos mais a administração do nosso ambiente. Com isso uma forma de garantir as consifugrações do seu *Swarm* é fazer o backup delas, todos os arquivos de configuração ficam na pasta "/var/lib/docker/swarm".
+
+Agora que seu backup esta feito e por alguma razão você precisa refazer o seu cluster, basta:
+```bash
+    docker swarm init --force-new-cluster --advertise-addr ipDaSuaMaquina
+```
+
+Assim como nós podemos incluir um novo *worker* no nosso cluster, existe a opção de incluirmos um outro manager.
+```bash
+    docker swarm join-token manager
+```
+Depois de incluido os hosts como manager, você consegue visulizar eles.
+```bash
+    docker node ls --format "{{.Hostname}} {{.ManagerStatus}}"
+```
 
 ## Agradecimentos/Referências
 ### Alura
