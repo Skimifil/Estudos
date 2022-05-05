@@ -484,10 +484,6 @@ Saída:
 
 ## Agradecimentos/Referências
 ### Alura
-<<<<<<< HEAD
+
 ##### Instrutores "Docker: criando e gerenciando containers" e "Docker Swarm: Orquestrador de containers"
 Daniel Artine
-=======
-##### Instrutores "Docker: criando e gerenciando containers"
-Daniel Artine
->>>>>>> afa8bc829b7ed13f15d5ee910a50e07fe4406797
