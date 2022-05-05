@@ -431,8 +431,58 @@ Depois de incluido os hosts como manager, você consegue visulizar eles.
 ```bash
     docker node ls --format "{{.Hostname}} {{.ManagerStatus}}"
 ```
+Para remover um *manager* do cluster, primeiro precisamos dar um "*demote*" nela para rebaixar ela:
+```bash
+    docker node demote nomeDoNode
+```
+Nisso, nós conseguimos fazer a remoção dela:
+```bash
+    docker node rm nomeDoNode
+```
+Se quisermos restringir um nó para que não receba serviços para serem executados nele, podemos usar a configuração:
+```bash
+    docker node update --availability drain nomeDoNode
+```
+E se quisermos restringir um serviço para executar em um tipo especifico de nó.
+```bash
+    docker service update --constraint-add node.role==worker idDoServico
+```
+
+Para distribuirmos nosso serviço em mais de uma replica rodando em mais de um nó, podemos com:
+```bash
+    docker service update --replicas numeroDeReplicas idDoService
+```
+Uma forma de fazermos essa distribuição de forma automática e que pegue todos os nós do cluster é utilizando o modo "global" no momento da criação do serviço:
+```bash
+    docker service create -p 8080:80 --mode global nginx
+```
+
+
+Subir um stack apartir de um ".yml" (utilizando o arquivo "docker-compose.yml").
+```bash
+    docker stack deploy --compose-file docker-compose.yml vote
+```
+Para visualizar o stack:
+```bash
+    docker stack ls
+    docker service ls
+```
+Saída:
+```bash
+    docker stack ls
+        NAME      SERVICES   ORCHESTRATOR
+        vote      6          Swarm
+    docker service ls
+        ID             NAME              MODE         REPLICAS   IMAGE                                          PORTS
+        lva9guoe1t9n   vote_db           replicated   0/1        postgres:9.4                                   
+        h1ip3shz8pod   vote_redis        replicated   1/1        redis:alpine                                   
+        6difswujsbbe   vote_result       replicated   0/1        dockersamples/examplevotingapp_result:before   *:5001->80/tcp
+        kyenyw0ke65i   vote_visualizer   replicated   0/1        dockersamples/visualizer:stable                *:8080->8080/tcp
+        v365pjac3bc7   vote_vote         replicated   0/2        dockersamples/examplevotingapp_vote:before     *:5000->80/tcp
+        q36n6lce69r7   vote_worker       replicated   0/1        dockersamples/examplevotingapp_worker:latest
+```
 
 ## Agradecimentos/Referências
 ### Alura
-##### Instrutores "Docker: criando e gerenciando containers"
+##### Instrutores "Docker: criando e gerenciando containers" e "Docker Swarm: Orquestrador de containers"
 Daniel Artine
