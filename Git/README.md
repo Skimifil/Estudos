@@ -71,7 +71,7 @@ Com isso, usamos esse repositório para trabalhar, no seu terminal, vincule esse
 Agora que o vinculo esta feito, você pode enviar seu(s) arquivo(s) usando o comando:
 
 ```bash
-    git push -U origin main
+    git push -u origin main
 ```
 
 Após isso, uma tela de confirmação de cadastro será aberta, basta colocar suas credenciais.
@@ -93,7 +93,7 @@ Agora segue com o *commit* das alterações.
 E envia o commit para o GitHub.
 
 ```bash
-    git push origin main
+    git push -u origin main
 ```
 
 ### Criando uma nova *branch*
@@ -109,7 +109,7 @@ Agora com a atualização feita, basta seguir os passos ja conhecidos:
 ```bash
     git add .
     git commit -m "novo botão"
-    git push origin novo-botao
+    git push -u origin novo-botao
 ```
 
 Lembrando que aqui você esta na *branch*, logo você **não** faz o *push* no “*main*” e sim na *branch* que você nomeou.
@@ -118,7 +118,7 @@ Agora você precisa fazer o “*merge*” da *branch* para que ela seja vinculad
 
 ```bash
     git merge novo-botao
-    git push origin main
+    git push -u origin main
 ```
 
 ### Voltando para *main*
