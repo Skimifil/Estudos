@@ -1,6 +1,6 @@
 # Algoritmos com JavaScript
 
- É uma sequeência de instruções executaveis que servem para trazer uma solução para um determinado problema.
+ É uma sequencia de instruções executáveis que servem para trazer uma solução para um determinado problema.
 
 ### Problema 1
 Dentro de uma lista de livros, precisamos saber qual o livro mais barato.
@@ -58,6 +58,9 @@ Com isso, teremos a saída:
     O livro mais barato é o PHP que custa R$15!
     -------------------------------------------------
 ```
+
+
+
 ## Agradecimentos/Referências
 ### Alura
 ##### Instrutores "Algoritmos com JavaScript I: iniciando com algoritmos de ordenação"
