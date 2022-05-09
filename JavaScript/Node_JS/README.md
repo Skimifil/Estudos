@@ -75,7 +75,54 @@ Com isso, nós criado o arquivo ".gitignore" e colocamos dentro dele o nome da p
     node_modules
 ```
 
+### O que é o "package.json"?
+O arquivo de "package.json" é uma receitinha do seu projeto, que contém  tudo que ele precisa para ser executado, então as dependências (módulos que são importados) e scripts que você usa no projeto são informadas nesse arquivo.
 
+Como visto antes, quando damos o comando "npm init", o *npm* configura nosso diretório do projeto e com isso, cria o arquivo "package,json".
+
+Com o passar do tempo e durante a construção da sua aplicação, seu arquivo de "package.json" começa a popular.
+```json
+    {
+      "name": "li_markdown",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "cli": "node cli.js ./arquivos/texto1.md"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "dependencies": {
+        "chalk": "4.0"
+      }
+    }
+```
+Agora, vamos entender o que são os campos e o que podemos adicionar.
+
+- *name* - Nome do seu projeto, quando não informado durante a inicialização, é dado o nome da pasta raiz do seu projeto.
+- *version* - Versão do seu projeto.
+- *description* - A descrição dele.
+- *main* - Qual o arquivo base do seu projeto.
+- *scripts* - Quando estamos testando a execução de nossos códigos, usamos o terminal passando o nome do arquivo base do projeto. Na sessão de "scripts", conseguimos automatizar a execução desses comandos passando o nome dele, exemplo o "cli":
+    ```bash
+        npm run cli
+    ```
+- *Keywords* - Palavras chaves para referenciar o projeto, algo como TAGs.
+- *author* - Informações do desenvolvedor que criou o projeto.
+- *license* - Qual a licença que esta sendo usada.
+- *dependecies* - Quais são as dependências usadas, quais os módulos que foram instalados e utilizados no projeto.
+
+Links de referencia:
+
+[NodeJS Reativa - package-json](https://nodejs.reativa.dev/0019-package-json/index)
+
+[NodeJS - what is the file package-json](https://nodejs.org/en/knowledge/getting-started/npm/what-is-the-file-package-json/)
+
+[Gabrie Luiz Ramos - Entendendo o package-json](https://gabrieluizramos.com.br/entendendo-o-package-json)
+
+[luiztools - o guia completo do package-json do node js](https://www.luiztools.com.br/post/o-guia-completo-do-package-json-do-node-js/)
 
 ## Agradecimentos/Referências
 ### Alura
