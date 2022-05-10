@@ -124,6 +124,12 @@ Links de referencia:
 
 [luiztools - o guia completo do package-json do node js](https://www.luiztools.com.br/post/o-guia-completo-do-package-json-do-node-js/)
 
+
+### Módulos interessantes
+
+- [Jest](https://jestjs.io/pt-BR/) - Módulo usado para fazer testes no código.
+- [chalk](https://www.npmjs.com/package/chalk) - Faz com que tu possa gerar string customizadas.
+
 ## Agradecimentos/Referências
 ### Alura
 ##### Instrutores "NodeJS: criando sua primeira biblioteca"
