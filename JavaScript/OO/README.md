@@ -272,9 +272,15 @@ Saída:
 
 ## Orientação a Objeto
 "É um modelo de se programar que você pega situações do mundo real e traz pro seu código".
-Me parece uma forma mais inteligente de programar, com sistema de classes que você faz um template do que se quer usar e depois você só instancia ela para alguém, além das Heranças que tem.
+Me parece uma forma mais inteligente de programar, com sistema de classes que você faz um template do que se quer usar, uma estrutura de objeto com características e ações e depois você só instancia ela para alguém, além das Heranças que tem. A base da Orientação a Objetos é a Classe.
 
 Por convenção, o nome das classes SEMPRE devem começar com a primeira letra maiúscula.
+
+### UML
+
+UML é a "Linguagem de Modelagem Unificada", ela é utilizada para ilustrar o comportamento e funcionalidades do nosso código, representar as estruturas e relações entre as classes de um projeto e interfaces com outros sistemas.
+
+___
 
 Estruturando sua classe:
 ```javascript
@@ -341,8 +347,13 @@ Saída:
         }
 ```
 
+
+
 ___
 ## Agradecimentos/Referências
 ### Alura
-##### Instrutores "Fundamentos do JavaScript: objetos"
-André Bessa e Juliana Amoasei 
+##### Instrutores 
+#### "Fundamentos do JavaScript: objetos"
+André Bessa e Juliana Amoasei
+#### "JavaScript: primeiros passos da programação orientada a objetos"
+Juliana Amoasei
