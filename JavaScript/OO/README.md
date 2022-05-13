@@ -1,6 +1,6 @@
 
 # Objetos
-Objetos no JS me parecem ser iguais a *arrays*, a diferença é que o objeto tem uma chave e um valor.
+Objetos são característica herdadas de uma classe. Um sistema de RPG D20 tem característica comuns que vários outros sistemas possuem, D7D, Tormenta 20, Pathfinder, etc... Logo o sistema D20 pode ser considerado uma Classe e os sistemas seus objetos.
 
 ```JavaScript
     const sistesmaDeRpgs = {
@@ -276,6 +276,26 @@ Me parece uma forma mais inteligente de programar, com sistema de classes que vo
 
 Por convenção, o nome das classes SEMPRE devem começar com a primeira letra maiúscula.
 
+### Encapsulamento
+
+A ideia de encapsulamento é quando o funcionamento dos atributos e métodos de uma classe ficam visível apenas para aquela classe, o seu programa não precisa saber como aquela classe funciona, ela só precisa do dado enviado por ela após seu processamento. Claro, é possível fazer alterações também, mas é a própria classe quem faz essa alteração, essas ações são feitas utilizando os *getters* e *setters*.
+
+```javascript
+    get nome() {
+        return this.nome
+    }
+
+    set aumentaANota(valor){
+        this.notaPessoal += valor
+    }
+```
+
+### Herança
+A herança é quando uma classe herda os métodos e atributos de outra  classe, se tornando filha dela e que essa classe filha tem novos atributos e métodos.
+
+### Polimorfismo
+É uma ideia de implementar um método de duas formas diferentes em classes diferentes, tem o mesmo nome, mas em classes diferentes sua implementação muda.
+
 ### UML
 
 UML é a "Linguagem de Modelagem Unificada", ela é utilizada para ilustrar o comportamento e funcionalidades do nosso código, representar as estruturas e relações entre as classes de um projeto e interfaces com outros sistemas.
@@ -357,3 +377,6 @@ ___
 André Bessa e Juliana Amoasei
 #### "JavaScript: primeiros passos da programação orientada a objetos"
 Juliana Amoasei
+
+#### Artigos
+[POO: o que é programação orientada a objetos?](https://www.alura.com.br/artigos/poo-programacao-orientada-a-objetos?gclid=CjwKCAjwve2TBhByEiwAaktM1ArE1j83uvIv6oD5XbgRgNXt-l7HVZ82AHp4iQSEtZxr1g0cP-SUSRoC2YQQAvD_BwE)
