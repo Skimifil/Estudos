@@ -482,6 +482,24 @@ Saída:
         q36n6lce69r7   vote_worker       replicated   0/1        dockersamples/examplevotingapp_worker:latest
 ```
 
+---
+
+### Containers de Estudo
+Eu vou colocar aqui a criação de alguns conatiners que uso para estudar.
+
+#### MongoDB
+Aprendendo MongoDB e pra não precisar instalar na minha máquina por enquanto, vou criar em container.
+```bash
+    docker run -d --name mongodbEstudo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=show -e MONGO_INITDB_ROOT_PASSWORD=show mongo
+```
+#### Nginx
+Aprendendo sobre Frontend, dai vou subir um nginx para suportar minhas páginas.
+```bash
+    docker run -it --rm -d -p 8080:80 --name paginaEstudo -v ~/site-content:/usr/share/nginx/html nginx
+```
+
+
+
 ## Agradecimentos/Referências
 ### Alura
 
