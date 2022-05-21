@@ -134,3 +134,6 @@ Links de referencia:
 ### Alura
 ##### Instrutores "NodeJS: criando sua primeira biblioteca"
 Juliana Amoasei
+
+##### Instrutores "Node.js: API Rest com Express e MongoDB"
+Jacqueline Oliveira
