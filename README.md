@@ -5,8 +5,8 @@ Esse repositório irá conter as anotações de tudo que ando estudando, princip
 
 - [Git/Github](https://github.com/Skimifil/Estudos/tree/main/Git)
 - [Docker](https://github.com/Skimifil/Estudos/tree/main/Docker)
-- [JavaScript](https://github.com/Skimifil/Estudos/tree/main/JavaScript)
-- MongoDB
+- Zabbix (Certificações ZCS e ZCP)
+- Python
 - Elastic Search
 - AWS
 
