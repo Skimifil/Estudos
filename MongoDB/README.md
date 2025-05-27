@@ -1,9 +1,5 @@
 # MongoDB
 
-## Por que aprender?
-
-A ideia agora é me profissionalizar em programação, irei utilizar o MongoDB como uma extensão do aprendizado. Quero ter conhecimentos desse SGDB para utilizar ele no meu aprendizado de programação e usar o Mongo para possíveis projetos.
-
 ## O que espero aprender?
 
 Espero ter conhecimento em como funciona o MongoDB para ter capacidade de utilizar em meus projetos de forma profissional.

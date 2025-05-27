@@ -1,9 +1,5 @@
 # Git e GitHub
 
-## Por que aprender?
-
-A ideia agora é me profissionalizar em programação e documentar tudo o que eu fazer, então dentro do meu *roadmap* de aprendizado, o Git DEVE estar incluso.
-
 ## O que espero aprender?
 
 Espero ter total conhecimento em como utilizar a ferramenta e ter meios mais práticos de ter meus estudo centralizados e prontos para serem consultados ou baixados de qualquer lugar.

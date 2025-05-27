@@ -1,12 +1,5 @@
 # Docker
 
-#### Observação
-- Entendi bem o básico, agora vou dar uma avançada para o Docker Swarm.
-- Vi que a Alura possui cursos para a Docker DCA, não vou fazer a certificação agora, mas vou dar uma olhada nesses cursos para fixar bem o conhecimento.
-## Por que aprender?
-
-A ideia agora é me profissionalizar em programação, irei utilizar o Docker para subir ambientes que suportem meus códigos e aprendizado, além de utilizar a ferramenta para otimizar coisas do meu trabalho.
-
 ## O que espero aprender?
 
 Espero ter total conhecimento em como utilizar a ferramenta, ter noções de como subir ambientes de forma rápida e saber como criar *dockerfile*s sem dificuldades.
