@@ -7,6 +7,9 @@ Esse repositório irá conter as anotações de tudo que ando estudando, princip
 - [Docker](https://github.com/Skimifil/Estudos/tree/main/Docker)
 - [Elastic Search](https://github.com/Skimifil/Estudos/tree/main/ElasticSearch)
 - [MongoDB](https://github.com/Skimifil/Estudos/tree/main/MongoDB)
+- [JavaScript](https://github.com/Skimifil/Estudos/tree/main/JavaScript)
+- [Terraform](https://github.com/Skimifil/Estudos/tree/main/Terraform)
+
 
 ## O que espero?
 Que eu tenha o conhecimento necessário para implementar automações e integrações com as minhas ferramentas de trabalho e que possa ter autonomia para criar.

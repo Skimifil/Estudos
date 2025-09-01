@@ -1,0 +1,4 @@
+streamlit
+# Adicione outras dependências aqui, uma por linha.
+# Exemplo:
+# pandas

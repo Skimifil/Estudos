@@ -31,14 +31,14 @@ Quando pedimos ao Docker para subir um container, a primeira coisa que ele faz �
 
 Então se você quer subir uma aplicação que usa o NGINX, o que você pode fazer é:
 ```bash
-    docker run nginx
+    docker run streamlit
 ```
 
 Com isso vocês vai ter a seguinte saída:
 ```bash
-    docker run nginx
-    Unable to find image 'nginx:latest' locally
-    latest: Pulling from library/nginx
+    docker run streamlit
+    Unable to find image 'streamlit:latest' locally
+    latest: Pulling from library/streamlit
     1fe172e4850f: Pull complete 
     35c195f487df: Pull complete 
     213b9b16f495: Pull complete 
@@ -46,17 +46,17 @@ Com isso vocês vai ter a seguinte saída:
     f5eee2cb2150: Pull complete 
     93e404ba8667: Pull complete 
     Digest: sha256:859ab6768a6f26a79bc42b231664111317d095a4f04e4b6fe79ce37b3d199097
-    Status: Downloaded newer image for nginx:latest
+    Status: Downloaded newer image for streamlit:latest
     /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
     /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
     /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-    10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
-    10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+    10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/streamlit/conf.d/default.conf
+    10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/streamlit/conf.d/default.conf
     /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
     /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
     /docker-entrypoint.sh: Configuration complete; ready for start up
     2022/05/01 14:37:32 [notice] 1#1: using the "epoll" event method
-    2022/05/01 14:37:32 [notice] 1#1: nginx/1.21.6
+    2022/05/01 14:37:32 [notice] 1#1: streamlit/1.21.6
     2022/05/01 14:37:32 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
     2022/05/01 14:37:32 [notice] 1#1: OS: Linux 5.13.0-40-generic
     2022/05/01 14:37:32 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
@@ -141,7 +141,7 @@ Temos a opção de pausar um container, é importante entender que quando paramo
 
 Devido ao sistema NET do Namespace, conseguimos fazer o isolamento e mapeamento de portas, com isso nós podemos passar na criação de um container de uma aplicação Web por exemplo, a porta que vai se comunicar o container e mapear a porta da nossa máquina que vai até esse container.
 ```bash
-    docker run -d -P nginx
+    docker run -d -P streamlit
 ```
 Com o "P" maiusculo, o próprio Docker cria um mapeamento de portas para aquele container.
 
@@ -158,7 +158,7 @@ Agora, basta ir no seu navegador e colocar "http://localhost:49153/" e você ter
 
 Uma outra forma de subir o container é com você mapeando as portas, com isso você usa o parametro de "-p" passando a porta da sua máquina ":" a porta do container.
 ```bash
-    docker run -d -p 8080:80 nginx
+    docker run -d -p 8080:80 streamlit
 ```
 E dando o comando do "docker port idDoContainer", você terá o mapemaneto que você fez:
 ```bash
@@ -401,7 +401,7 @@ E nisso, quando for no seu *manager*, você vai conseguir ver que o "status" del
 
 Agora que temos nosso ambiente pronto para uso, precisamos subir nossos containers. Para isso, o Docker Swarm utilizaos "*services*". Antes quando precisavamos subir um container, usavamos o comando "docker run ...", mas esse comando é utilizado dentro de um escopo **local**. Para subirmos os containers dentro de um escopo **global**, utilizamos o comando "docker service create..." no nosso *manager*.
 ```bash
-    docker service create -p 8080:80 nginx
+    docker service create -p 8080:80 streamlit
 ```
 Com isso, é possivel validar as informações desse serviço.
 ```bash
@@ -447,7 +447,7 @@ Para distribuirmos nosso serviço em mais de uma replica rodando em mais de um n
 ```
 Uma forma de fazermos essa distribuição de forma automática e que pegue todos os nós do cluster é utilizando o modo "global" no momento da criação do serviço:
 ```bash
-    docker service create -p 8080:80 --mode global nginx
+    docker service create -p 8080:80 --mode global streamlit
 ```
 
 
@@ -488,9 +488,238 @@ Aprendendo MongoDB e pra não precisar instalar na minha máquina por enquanto, 
 #### Nginx
 Aprendendo sobre Frontend, dai vou subir um nginx para suportar minhas páginas.
 ```bash
-    docker run -it --rm -d -p 8080:80 --name paginaEstudo -v ~/site-content:/usr/share/nginx/html nginx
+    docker run -it --rm -d -p 8080:80 --name paginaEstudo -v ~/site-content:/usr/share/streamlit/html streamlit
 ```
 
+------------------------------------------------------------------------------------------------------------------------
+## Estudo a mais sobre Dockerfile
+
+Para qualquer desenvolvedor ou entusiasta de tecnologia que busca otimizar o empacotamento e a distribuição de aplicações, dominar a criação de `Dockerfiles` é um passo fundamental. Este guia completo irá te ensinar, do básico ao avançado, como construir seus próprios Dockerfiles, garantindo a criação de imagens Docker eficientes, seguras e portáteis.
+
+### O Que é um Dockerfile?
+
+Um `Dockerfile` é um arquivo de texto simples que contém um conjunto de instruções sequenciais para a construção de uma imagem Docker. Pense nele como uma receita de bolo: cada linha é um passo que o Docker deve seguir para montar o ambiente completo e isolado da sua aplicação. Uma vez que a imagem é construída a partir do `Dockerfile`, ela pode ser executada como um contêiner em qualquer ambiente que tenha o Docker instalado.
+
+### A Estrutura Básica de um Dockerfile
+
+Um `Dockerfile` é composto por uma série de instruções, cada uma em sua própria linha. A sintaxe geral é `INSTRUÇÃO argumentos`. Vamos analisar as instruções mais comuns e essenciais:
+
+| Instrução | Descrição |
+| --- | --- |
+| `FROM` | **Obrigatória.** Define a imagem base a partir da qual você construirá a sua. Geralmente, se parte de uma imagem oficial de um sistema operacional (como `ubuntu:22.04`) ou de uma linguagem de programação (como `python:3.10-slim`). |
+| `WORKDIR` | Define o diretório de trabalho para as instruções subsequentes (`RUN`, `CMD`, `ENTRYPOINT`, `COPY`, `ADD`). Se o diretório não existir, ele será criado. |
+| `COPY` | Copia arquivos e diretórios do seu sistema de arquivos local (o contexto da build) para o sistema de arquivos da imagem. |
+| `RUN` | Executa comandos dentro da imagem durante o processo de construção. É comumente utilizado para instalar pacotes, atualizar o sistema ou compilar código. Cada instrução `RUN` cria uma nova camada na imagem. |
+| `EXPOSE` | Informa ao Docker que o contêiner escutará em portas de rede específicas em tempo de execução. **Importante:** `EXPOSE` não publica a porta. Ele funciona como uma documentação e uma configuração padrão. |
+| `CMD` | Fornece o comando padrão que será executado quando um contêiner for iniciado a partir da imagem. Só pode haver uma instrução `CMD` em um `Dockerfile`. Se houver mais de uma, apenas a última terá efeito. |
+
+### Criando seu Primeiro Dockerfile: Um Exemplo Prático com um Servidor Web Simples
+
+Vamos criar um `Dockerfile` para uma aplicação web simples que utiliza o Nginx para servir um arquivo HTML estático.
+
+**Estrutura do projeto:**
+
+```
+meu-app-web/
+├── Dockerfile
+└── index.html
+```
+
+**Conteúdo do `index.html`:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meu App Docker</title>
+</head>
+<body>
+    <h1>Olá, Docker!</h1>
+</body>
+</html>
+```
+
+**Conteúdo do `Dockerfile`:**
+
+```dockerfile
+# 1. Define a imagem base oficial do Nginx
+FROM nginx:stable-alpine
+
+# 2. Define o diretório de trabalho dentro do contêiner
+WORKDIR /usr/share/nginx/html
+
+# 3. Copia o arquivo local index.html para o diretório de trabalho no contêiner
+COPY index.html .
+
+# 4. Expõe a porta 80, que é a porta padrão do Nginx
+EXPOSE 80
+
+# 5. O comando para iniciar o Nginx já está definido na imagem base, então não precisamos de um CMD aqui.
+```
+
+**Construindo e Executando a Imagem:**
+
+1.  **Construa a imagem:** Navegue até o diretório `meu-app-web` no seu terminal e execute o comando:
+
+    ```bash
+    docker build -t meu-servidor-web .
+    ```
+
+      * `docker build`: O comando para construir uma imagem.
+      * `-t meu-servidor-web`: A flag `-t` (de *tag*) dá um nome à sua imagem.
+      * `.`: Indica que o contexto da construção (onde o Dockerfile e os arquivos a serem copiados estão) é o diretório atual.
+
+2.  **Execute o contêiner:** Após a construção da imagem, execute o seguinte comando para iniciar um contêiner:
+
+    ```bash
+    docker run -d -p 8080:80 meu-servidor-web
+    ```
+
+      * `docker run`: O comando para iniciar um contêiner.
+      * `-d`: Executa o contêiner em modo "detached" (em segundo plano).
+      * `-p 8080:80`: Mapeia a porta 8080 do seu computador (host) para a porta 80 do contêiner.
+
+Agora, abra seu navegador e acesse `http://localhost:8080`. Você verá a mensagem "Olá, Docker\!".
+
+### Exemplos para Aplicações Reais
+
+#### Aplicação Python (Flask)
+
+**Estrutura do projeto:**
+
+```
+meu-app-python/
+├── Dockerfile
+├── requirements.txt
+└── app.py
+```
+
+**`app.py`:**
+
+```python
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Olá, mundo Python com Docker!'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
+```
+
+**`requirements.txt`:**
+
+```
+Flask==2.2.2
+```
+
+**`Dockerfile`:**
+
+```dockerfile
+# Imagem base oficial do Python
+FROM python:3.10-slim
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Copia o arquivo de dependências
+COPY requirements.txt .
+
+# Instala as dependências
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copia o restante do código da aplicação
+COPY . .
+
+# Expõe a porta 5000, padrão do Flask
+EXPOSE 5000
+
+# Comando para executar a aplicação
+CMD ["python", "app.py"]
+```
+
+#### Aplicação Node.js (Express)
+
+**Estrutura do projeto:**
+
+```
+meu-app-nodejs/
+├── Dockerfile
+├── package.json
+└── server.js
+```
+
+**`package.json`:**
+
+```json
+{
+  "name": "meu-app-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
+```
+
+**`server.js`:**
+
+```javascript
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Olá, mundo Node.js com Docker!');
+});
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
+```
+
+**`Dockerfile`:**
+
+```dockerfile
+# Imagem base oficial do Node.js
+FROM node:18-alpine
+
+# Define o diretório de trabalho
+WORKDIR /usr/src/app
+
+# Copia os arquivos de definição de dependências
+COPY package*.json ./
+
+# Instala as dependências
+RUN npm install
+
+# Copia o código da aplicação
+COPY . .
+
+# Expõe a porta 3000
+EXPOSE 3000
+
+# Comando para iniciar a aplicação
+CMD [ "npm", "start" ]
+```
+
+### Melhores Práticas para Escrever Dockerfiles
+
+Para criar imagens otimizadas e seguras, siga estas boas práticas:
+
+  * **Use Imagens Base Oficiais e Mínimas:** Prefira imagens oficiais do Docker Hub e opte por variantes menores, como as baseadas em `alpine` ou `slim`, que reduzem o tamanho da imagem e a superfície de ataque.
+  * **Aproveite o Cache de Camadas:** O Docker armazena em cache as camadas da imagem. Para otimizar o tempo de build, ordene suas instruções da menos volátil para a mais volátil. Por exemplo, copie e instale as dependências (que mudam com menos frequência) antes de copiar o código-fonte da sua aplicação.
+  * **Utilize um Arquivo `.dockerignore`:** Semelhante ao `.gitignore`, o `.dockerignore` permite que você exclua arquivos e diretórios desnecessários do contexto da build, como a pasta `node_modules` ou arquivos de log. Isso acelera o processo de build e resulta em imagens menores.
+  * **Combine Comandos `RUN`:** Para reduzir o número de camadas, agrupe comandos `RUN` relacionados usando o operador `&&`. Por exemplo, em vez de ter múltiplos `RUN apt-get install`, combine-os em uma única linha.
+  * **Seja Explícito:** Utilize `COPY` em vez de `ADD` a menos que você precise especificamente dos recursos do `ADD` (como descompactação de arquivos TAR ou cópia de URLs). `COPY` é mais transparente e previsível.
+  * **Prefira a Sintaxe de Array para `CMD` e `ENTRYPOINT`:** `CMD ["executavel", "param1", "param2"]` é preferível a `CMD comando param1 param2`. A forma de array não invoca um shell, o que pode evitar comportamentos inesperados.
+
+Ao seguir estas diretrizes, você estará no caminho certo para criar `Dockerfiles` robustos e eficientes, permitindo que suas aplicações sejam facilmente empacotadas, distribuídas e executadas em qualquer ambiente.
 
 
 ## Agradecimentos/Referências
